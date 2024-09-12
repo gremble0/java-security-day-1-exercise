@@ -17,15 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-        .authorizeHttpRequests((requests) -> requests
-            .requestMatchers("/books", "/books/*").authenticated()
-        )
-        .formLogin((form) -> form
-            .loginPage("/login").permitAll()
-        )
-        .logout(LogoutConfigurer::permitAll);
-    return http.build();
+    return http.authorizeHttpRequests(requests -> requests.requestMatchers("/books", "/books/*").authenticated())
+        .formLogin(form -> form.loginPage("/login").permitAll())
+        .logout(LogoutConfigurer::permitAll)
+        .build();
   }
 
   @Bean
