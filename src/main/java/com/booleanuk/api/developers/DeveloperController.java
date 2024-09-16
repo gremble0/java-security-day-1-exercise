@@ -21,7 +21,7 @@ public class DeveloperController {
     return ResponseEntity.ok(this.repository.findAll());
   }
 
-  @GetMapping(value = "{id}")
+  @GetMapping("{id}")
   public ResponseEntity<Developer> get(@PathVariable int id) throws ResponseStatusException {
     return ResponseEntity.ok(this.repository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));

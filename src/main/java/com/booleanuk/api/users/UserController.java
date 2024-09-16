@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "users")
+@RequestMapping("users")
 public class UserController {
   private final UserRepository repository;
 
@@ -21,8 +21,8 @@ public class UserController {
     return ResponseEntity.ok(this.repository.findAll());
   }
 
-  @GetMapping(value = "{id}")
-  public ResponseEntity<User> get(@PathVariable int id) {
+  @GetMapping("{id}")
+  public ResponseEntity<User> get(@PathVariable int id) throws ResponseStatusException {
     return ResponseEntity.ok(this.repository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
   }
@@ -32,7 +32,7 @@ public class UserController {
     return ResponseEntity.status(HttpStatus.CREATED).body(this.repository.save(user));
   }
 
-  @PutMapping(value = "{id}")
+  @PutMapping("{id}")
   public ResponseEntity<User> put(@PathVariable int id, @RequestBody User user) {
     return ResponseEntity.status(HttpStatus.CREATED).body(
         this.repository.findById(id)
@@ -46,7 +46,7 @@ public class UserController {
     );
   }
 
-  @DeleteMapping(value = "{id}")
+  @DeleteMapping("{id}")
   public ResponseEntity<User> delete(@PathVariable int id) {
     return ResponseEntity.ok(this.repository.findById(id)
         .map(existing -> {

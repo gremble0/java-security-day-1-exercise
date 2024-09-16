@@ -16,19 +16,19 @@ public class GameController {
     this.repository = repository;
   }
 
-  @PostMapping
-  public ResponseEntity<Game> post(@RequestBody Game game) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(this.repository.save(game));
-  }
-
   @GetMapping
   public ResponseEntity<List<Game>> get() {
     return ResponseEntity.ok(this.repository.findAll());
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<Game> get(@PathVariable int id) throws ResponseStatusException{
+  public ResponseEntity<Game> get(@PathVariable int id) throws ResponseStatusException {
     return ResponseEntity.ok(this.repository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+  }
+
+  @PostMapping
+  public ResponseEntity<Game> post(@RequestBody Game game) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(this.repository.save(game));
   }
 }
