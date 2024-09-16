@@ -1,3 +1,4 @@
+# THIS SPEC IS WRONG
 openapi: 3.1.0
 info:
   title: java-security-day-1-exercise
@@ -5,14 +6,13 @@ info:
   version: 1.0.0
   contact:
     name: java-security-day-1-exercise
-    #MVC with Postgres Exercise
 
 servers:
   - url: http://localhost:4000
 tags:
-  - name: employees
+  - name: users
 paths:
-  /employees:
+  /users:
     post:
       tags:
         - employees
